@@ -1,0 +1,4 @@
+Name          		Task  				Deadline
+Islom  			EDA  		                 4pm
+Omolara  	Training the model  			 4pm
+Kingsley	Looking into the App 		         4pm  
