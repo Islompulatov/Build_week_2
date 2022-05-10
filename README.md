@@ -4,12 +4,15 @@
 Preliminary analyses
 Preprocessing of data 
 
-# Tuesday
-EDA and Train the model
-Look  the information about app 
+# Tuesday Deadline 4 pm
+EDA Islom 4 pm
+Train the model Omolara 4 pm
+Look  the information about app, Kingsley 4 pm
 
-# Wednesday
-Check the model with CLI
+# Wednesday Deadline 4 pm
+Check the model with CLI, Islom and Omolara 4 pm
+
+
 
 # Thursday
 work on the app together
