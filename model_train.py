@@ -18,18 +18,29 @@ from sklearn import metrics, pipeline
 import time
 from sklearn import metrics
 from sklearn.model_selection import GridSearchCV
-# five_second_data = pd.read_csv("./dataset_5secondWindow/dataset_5secondWindow.csv")
+from sklearn.impute import SimpleImputer
 
-# not_null_col = [col for col in five_second_data.columns if five_second_data[col].isnull().sum()<800]
-# new_data = pd.DataFrame(five_second_data[not_null_col])
-# print(new_data.head())
 OE = OrdinalEncoder()
 # ct = np.asarray(new_data['target'])
 # new_data['target'] = OE.fit_transform(ct.reshape(-1,1))
 
 
 # print(new_data)
-df = pd.read_csv("./fine1_dataset.csv")
+#df = pd.read_csv("./fine1_dataset.csv")
+df = pd.read_csv("./dataset_5secondWindow/dataset_5secondWindow.csv")
+
+df = df.dropna(axis=1, how="any", thresh=len(df)*.5, subset=None, inplace=False)
+not_null = [col for col in df.columns if df[col].isnull().sum() < 1]
+new_null = [i for i in df.columns if 1<= df[i].isnull().sum()<2374]
+
+df1 = df[new_null].rolling(window=10, min_periods=1).mean()
+
+df2= df[['target','user']]
+df= pd.concat([df2,df1], axis = 1)
+df =df.dropna(axis=0, how="any")
+ct = np.asarray(df['target'])
+
+df['target'] = OE.fit_transform(ct.reshape(-1,1))
 
 ct2 = np.asarray(df['user'])
 df['user'] = OE.fit_transform(ct2.reshape(-1,1))
@@ -39,15 +50,14 @@ df = df.sort_values(by='user', ascending=True)
 # df = pd.read_csv("./final_dataset.csv")
 # #print(df.shape)
 #split original data into train and test
-df_train = df.iloc[:4680,:]
-df_test = df.iloc[4680:,:]
+df_train = df.iloc[:3421,:]
+df_test = df.iloc[3421:,:]
 #print(df_train)
 
 #Train set 
 X_train = df_train.drop(['target','user'],axis=1)
 #removing id column and unnamed column. not a feature needed for the training
 X_train = X_train.iloc[:,2:]
-
 y_train = df_train['target']
 #print(X_train)
 # Test set 
