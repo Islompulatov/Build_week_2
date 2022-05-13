@@ -8,6 +8,7 @@ from matplotlib.patches import Ellipse
 import pandas as pd
 import seaborn as sns
 import numpy as np
+import missingno as msno
 #from train_n_test import benchmark, feature,hyper_param
 
 #input data into dataframe
@@ -16,6 +17,16 @@ df4 = df.sort_values(by='user', ascending=True)
 benchmark= pd.read_csv('benmarch_model.csv')
 feature= pd.read_csv('feature_engineer_model.csv')
 hyper_param = pd.read_csv('hyper_param_model.csv')
+
+d_f = df.dropna(axis=1, how="any", thresh=len(df)*.5, subset=None, inplace=False)
+not_null = [col for col in df.columns if df[col].isnull().sum() < 1]
+new_null = [i for i in df.columns if 1<= df[i].isnull().sum()<2374]
+
+df1 = d_f[new_null].rolling(window=10, min_periods=1).mean()
+
+df2= df[not_null]
+df3= pd.concat([df2,df1], axis = 1)
+df3 =df3.dropna(axis=0, how="any")
 
 
 
@@ -61,12 +72,26 @@ def methodology():
 
     # st.markdown('### ***Hotels Data***')
     # st.dataframe(df_hotel)
-   pass
-def preprocessing():
-    fig, ax = plt.subplots(figsize=(16, 8))
 
-    ax = sns.countplot(x='user', hue='target', data=df4) 
-    st.plotly_chart(ax)
+   pass
+def missing_value():
+    fig = plt.figure(figsize=(16, 10))
+    msno.matrix(df,figsize=(12,5), fontsize=12, color=(1, 0.38, 0.27))
+    plt.title('missing value')
+    st.pyplot(fig)
+
+def non_missing_value():
+    fig = plt.figure(figsize=(16, 10))
+    msno.matrix(df3,figsize=(12,5), fontsize=12, color=(1, 0.38, 0.27))
+    plt.title('non missing value')
+    st.pyplot(fig)
+
+def preprocessing():
+    fig = plt.figure(figsize=(16, 10))
+
+    sns.countplot(x='user', hue='target', data=df4) 
+    plt.title('identifying users behaviour of users')
+    st.pyplot(fig)
 
 
 def Benchmark_model():
@@ -91,7 +116,7 @@ def Enhanced_data_model():
                 feature, x = "Model", y = "Accuracy",
                                
                                 template = 'seaborn',
-                                title = 'accuracy graph of enhanced data ', 
+                                title = 'Accuracy graph of enhanced data ', 
                                 
                                         )
 
@@ -105,9 +130,9 @@ def completion_time():
     
 
     fig = px.bar(
-                feature, x = "Model", y = "Time",hue="Model",
+                feature, x = "Model", y = "Time",
                                 template = 'seaborn',
-                                title = 'time of completion of each model per seconds', 
+                                title = 'Time of completion of each model per seconds', 
                                 
                                         )
 
@@ -118,7 +143,7 @@ def hyper_param_model():
     
 
     fig = px.bar(
-                hyper_param, x = "Model", y =  "Accuracy",hue="Model",
+                hyper_param, x = "Model", y =  "Accuracy",
                                 template = 'seaborn',
                                 title = 'Accuracy with Hyperameters', 
                                 
@@ -129,9 +154,9 @@ def hyper_param_model():
 def completion_time_hyper_param():
     
 
-    fig = px.bar(hyper_param, x = "Model", y = "Time",hue="Model",
+    fig = px.bar(hyper_param, x = "Model", y = "Time",
                                 template = 'seaborn',
-                                title = 'time of completion of each model per seconds'
+                                title = 'Time of completion of each model per seconds'
                                 
                                         )
 
@@ -184,7 +209,8 @@ def main():
     
     #Third Page
     elif page == "Methodology":
-
+        missing_value()
+        non_missing_value()
         preprocessing()
     
         
@@ -196,6 +222,9 @@ def main():
     elif page == "Analysis of Results":
         Benchmark_model()
         Enhanced_data_model()
+        completion_time()
+        hyper_param_model()
+        completion_time_hyper_param()
         #     page2 = st.sidebar.selectbox(
         #      "Sub Content", 
         #     [
