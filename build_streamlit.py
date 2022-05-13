@@ -20,7 +20,10 @@ import numpy as np
 # objectives of work
 def objectives():
     st.header('*The objectives of the project is to:* \n' )  
-    st.markdown('### 1. \n' 
+    st.markdown('### 1.To develop a fitness software that is able to be used in plug and play style into most apps and smart watches \n' 
+                '### 2.To build a model that  facilitate the Transport mode detection and calorie counting and make it more precise. \n'
+                '### 3.This Model incoporates  different measurements on the phone to classify the activity the athletes are taking part on accurately.'
+                '### 4. the activities are grouped into three classes, which are : class 0 (Train,car, bus), class 1(still), class 2 (walking)'
 
                 )
         
@@ -56,12 +59,13 @@ def methodology():
    pass
 
 
-def bar_chart_location():
+def Benchmark_model():
     
     fig = px.bar(
-                pd.DataFrame, x = "Location Name", y = "Total Number",
+                benchmark, x = "Model", y = "Accuracy",
+                                hue="Model",
                                 template = 'seaborn',
-                                title = '', 
+                                title = 'accuracy graph of the Raw data', 
                                 
                                         )
 
@@ -70,33 +74,59 @@ def bar_chart_location():
 
 
 
-# def bar_chart_best_location():
+def Enhanced_data_model():
     
 
-#     fig = px.bar(
-#                 pd.DataFrame, x = "Location Name", y = "Total Number",
-#                                 template = 'seaborn',
-#                                 title = 'Top Rated 10 Location', 
+    fig = px.bar(
+                feature, x = "Model", y = "Accuracy",
+                                hue="Model",
+                                template = 'seaborn',
+                                title = 'accuracy graph of enhanced data ', 
                                 
-#                                         )
+                                        )
 
-#     st.plotly_chart(fig) 
+    st.plotly_chart(fig) 
+    st.plotly_chart(fig) 
 
 
 #### best food
 
-def bar_chart_best_food():
+def completion_time():
     
 
-    # fig = px.bar(
-    #             pd.DataFrame, x = "Cuisines Name", y = "Total Number",
-    #                             template = 'seaborn',
-    #                             title = 'Top Rated 10 Cuisines', 
+    fig = px.bar(
+                feature, x = "Model", y = "Time",hue="Model"
+                                template = 'seaborn',
+                                title = 'time of completion of each model per seconds', 
                                 
-    #                                     )
+                                        )
 
-    # st.plotly_chart(fig) 
+    st.plotly_chart(fig) 
     pass
+
+def hyper_param_model():
+    
+
+    fig = px.bar(
+                hyper_param, x = "Model", y =  "Accuracy",hue="Model"
+                                template = 'seaborn',
+                                title = 'Accuracy with Hyperameters', 
+                                
+                                        )
+
+    st.plotly_chart(fig) 
+
+def completion_time_hyper_param():
+    
+
+    fig = px.bar(
+                hyper_param, x = "Model", y = "Time",hue="Model"
+                                template = 'seaborn',
+                                title = 'time of completion of each model per seconds', 
+                                
+                                        )
+
+    st.plotly_chart(fig) 
 
 
 
@@ -121,8 +151,11 @@ def main():
     )
     
     if page=='Title':
-       st.title("")
-       st.markdown("")
+       st.title("Apple Watch FIt Tracker")
+       st.markdown("Team - Apple Watch"
+                    '1.Omolara'
+                    '2.Kingleys'
+                    '3.Islom')
        #st.image("Downloads\\london.jpg", use_column_width = True)
     
 

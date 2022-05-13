@@ -202,3 +202,8 @@ best_model = tree_classifiers1.get("Random Forest")
 best_model.fit(X_train1, y_train1)
 joblib.dump(best_model, 'model.pkl')
 
+
+
+benchmark= pd.read_csv('benmarch_model.csv')
+feature= pd.read_csv('feature_engineer_model.csv')
+hyper_param = pd.read_csv('hyper_param_model.csv')
