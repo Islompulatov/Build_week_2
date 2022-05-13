@@ -41,7 +41,7 @@ df2= df[not_null]
 df3= pd.concat([df2,df1], axis = 1)
 df3 =df3.dropna(axis=0, how="any")
 
-
+df4 = df.sort_values(by='user', ascending=True)
 
 OE = OrdinalEncoder()
 ct2 = np.asarray(df3['user'])
@@ -199,4 +199,6 @@ results_ord2.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color=
 
 import joblib
 best_model = tree_classifiers1.get("Random Forest")
+best_model.fit(X_train1, y_train1)
 joblib.dump(best_model, 'model.pkl')
+
