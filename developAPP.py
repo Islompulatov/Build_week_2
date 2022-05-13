@@ -64,32 +64,34 @@ class CalorieCalculator(GridLayout):
         height= int(self.high.text)
         weight= int(self.weight.text)
         model=joblib.load("model.pkl")
-        prediction=model.predict(df)[0]
+        prediction=model.predict(df)
         #gender=self.gender.text
         # if gender=='Female':
         #      BMR = (9.56*weight)+(1.8*height)-(4.68*age)+655
         # else:
         #     BMR = (13.75*weight)+(5*height)-(6.76*age)+66
         BMR = (9.56*weight)+(1.8*height)-(4.68*age)+655
-        if prediction==0:
+        for i in range(prediction.shape[0]):
+        
+            if i==0:
 
-            calorie=BMR*1.1
-            act= f'You are either on a train or Bus\n and your Calories Burnt is: {str(int(calorie))} '
+                calorie=BMR*1.1
+                act= f'You are either on a train or Bus\n and your Calories Burnt is: {str(int(calorie))} '
 
-            self.add_widget(Label(text = act))
-        elif prediction==1:
+                self.add_widget(Label(text = act))
+            elif i==1:
 
-            calorie=BMR*1.2
-            act= f'You are Still and doing Nothing\n and your Calories Burnt is: {str(int(calorie))} '
+                calorie=BMR*1.2
+                act= f'You are Still and doing Nothing\n and your Calories Burnt is: {str(int(calorie))} '
 
-            self.add_widget(Label(text = act))
+                self.add_widget(Label(text = act))
 
-        #self.add_widget(Label(text = "You are " + str(int(calorie)) + ""))
-        else: 
-            calorie=BMR*1.372
-            act= f'You are walking\n and your Calories Burnt is: {str(int(calorie))} '
+            #self.add_widget(Label(text = "You are " + str(int(calorie)) + ""))
+            else: 
+                calorie=BMR*1.372
+                act= f'You are walking\n and your Calories Burnt is: {str(int(calorie))} '
 
-            self.add_widget(Label(text = act))
+                self.add_widget(Label(text = act))
 
     
 class MyApp(App):
