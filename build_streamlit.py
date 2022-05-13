@@ -36,8 +36,7 @@ def objectives():
     st.header('*The objectives of the project is to:* \n' )  
     st.markdown('### 1.To develop a fitness software that is able to be used in plug and play style into most apps and smart watches \n' 
                 '### 2.To build a model that  facilitate the Transport mode detection and calorie counting and make it more precise. \n'
-                '### 3.This Model incoporates  different measurements on the phone to classify the activity the athletes are taking part on accurately.\n'
-                '### 4. the activities are grouped into three classes, which are : class 0 (Train,car, bus), class 1(still), class 2 (walking)'
+                '### 3. the activities are grouped into three classes, which are : class 0 (Train,car, bus), class 1(still), class 2 (walking)'
 
                 )
         
@@ -83,11 +82,22 @@ def non_missing_value():
     st.pyplot(fig)
 
 def preprocessing():
-    fig = plt.figure(figsize=(16, 10))
 
+    # #fig = plt.figure(figsize=(16, 10))
+    # fig = msno.matrix(df,figsize=(12,5), fontsize=12, color=(1, 0.38, 0.27))
+    # plt.title('missing value')
+    # st.pyplot(fig)
+
+    # #fig1= plt.figure(figsize=(16, 10))
+    # fig1 = msno.matrix(df3,figsize=(12,5), fontsize=12, color=(1, 0.38, 0.27))
+    # plt.title('non missing value')
+    # st.pyplot(fig1)
+
+    fig2 = plt.figure(figsize=(16, 10))
     sns.countplot(x='user', hue='target', data=df4) 
     plt.title('identifying users behaviour of users')
-    st.pyplot(fig)
+
+    st.pyplot(fig2)
 
 
 def Benchmark_model():
@@ -205,8 +215,6 @@ def main():
     
     #Third Page
     elif page == "Methodology":
-        missing_value()
-        non_missing_value()
         preprocessing()
     
         

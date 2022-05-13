@@ -40,7 +40,7 @@ class CalorieCalculator(GridLayout):
         self.top_grid.add_widget(self.age)
 
         
-        self.top_grid.add_widget(Label(text='Height ()'))
+        self.top_grid.add_widget(Label(text='Height (cm)'))
         self.high=TextInput(multiline=False)
         self.top_grid.add_widget(self.high)
 
