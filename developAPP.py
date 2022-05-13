@@ -40,12 +40,12 @@ class CalorieCalculator(GridLayout):
         self.top_grid.add_widget(self.age)
 
         
-        self.top_grid.add_widget(Label(text='Height '))
+        self.top_grid.add_widget(Label(text='Height ()'))
         self.high=TextInput(multiline=False)
         self.top_grid.add_widget(self.high)
 
        
-        self.top_grid.add_widget(Label(text='Weight '))
+        self.top_grid.add_widget(Label(text='Weight(kg)'))
         self.weight=TextInput(multiline=False)
         self.top_grid.add_widget(self.weight)
 
@@ -76,20 +76,20 @@ class CalorieCalculator(GridLayout):
             if i==0:
 
                 calorie=BMR*1.1
-                act= f'You are either on a train or Bus\n and your Calories Burnt is: {str(int(calorie))} '
+                act= f'You are either on a train or Bus\n and your Calories Burnt is: {str(int(calorie))}cals '
 
                 self.add_widget(Label(text = act))
             elif i==1:
 
                 calorie=BMR*1.2
-                act= f'You are Still and doing Nothing\n and your Calories Burnt is: {str(int(calorie))} '
+                act= f'You are Still and doing Nothing\n and your Calories Burnt is: {str(int(calorie))}cals '
 
                 self.add_widget(Label(text = act))
 
             #self.add_widget(Label(text = "You are " + str(int(calorie)) + ""))
             else: 
                 calorie=BMR*1.372
-                act= f'You are walking\n and your Calories Burnt is: {str(int(calorie))} '
+                act= f'You are walking\n and your Calories Burnt is: {str(int(calorie))}cals '
 
                 self.add_widget(Label(text = act))
 
