@@ -122,6 +122,7 @@ def main():
     
     if page=='Title':
        st.title("")
+       st.markdown("")
        #st.image("Downloads\\london.jpg", use_column_width = True)
     
 
