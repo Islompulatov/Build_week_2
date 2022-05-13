@@ -47,13 +47,9 @@ def outline():
 
                 '### 2. Methodology of the Work \n'
 
-                '### 3. Analysis \n'
+                '### 3. Analysis of result \n'
 
-                '### 4. Main Analysis \n'
-
-                '### 5. Final Result \n'
-
-                '### 6. Recommendation')
+                '### 6. Demonstration')
         
     
 # methods and show data
@@ -121,7 +117,7 @@ def Enhanced_data_model():
                                         )
 
     st.plotly_chart(fig) 
-    st.plotly_chart(fig) 
+   
 
 
 #### best food
@@ -186,10 +182,10 @@ def main():
     
     if page=='Title':
        st.title("Apple Watch FIt Tracker")
-       st.markdown("Team - Apple Watch \n"
-                    '1.Omolara\n'
-                    '2.Kingleys\n'
-                    '3.Islom\n')
+       st.markdown("## Team - Apple Watch \n"
+                    '### 1. Omolara\n'
+                    '### 2. Kingleys\n'
+                    '### 3. Islom\n')
        #st.image("Downloads\\london.jpg", use_column_width = True)
     
 
@@ -251,15 +247,15 @@ def main():
 
 
     #Fifth page
-    elif page == "Final Result":
-        st.title("Final Result")
-        st.header("Restaurants")
-        #st.image("Downloads\\res.jpg", use_column_width = True)
+    elif page == "Demonstration":
+        st.title("")
+        st.header("")
+        
         st.balloons()
 
 
-    elif page == "Recommendation":
-        st.title("Recommended Location")
+    # elif page == "Recommendation":
+    #     st.title("Recommended Location")
         
          
     
